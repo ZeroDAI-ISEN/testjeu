@@ -10,7 +10,7 @@ public class gameManager : MonoBehaviour
 
     // Variable pour savoir si on doit repositionner le joueur
     public bool hasPlayerPositionSaved = false;
-    
+
     [SerializeField] private PlayerInput input;
     void Awake()
     {
@@ -24,12 +24,14 @@ public class gameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public static gameManager GetInstance(){
+    public static gameManager GetInstance()
+    {
         return instance;
     }
- 
-    public PlayerInput GetPlayerInput(){
+
+    public PlayerInput GetPlayerInput()
+    {
         return input;
     }
 
- }
+}

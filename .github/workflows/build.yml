@@ -1,9 +1,15 @@
 name: Build Unity Project
-on: push
+on: 
+  workflow_run:
+    workflows:
+      - Linter
+    types:
+      - completed
 jobs:
   buildWebGL:
     name: Build for WebGL
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -14,7 +20,6 @@ jobs:
           path: Library
           key: Library-WebGL
           restore-keys: Library-
-      - uses: super-linter/super-linter@v7.1.0
       - uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}

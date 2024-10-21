@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField] GameObject spriteSpawn;      
+    [SerializeField] GameObject spriteSpawn;
 
     public GameObject player;
 

@@ -16,22 +16,27 @@ public abstract class interactableObject : MonoBehaviour
 
     protected gameManager manager;
 
-    
-    private void Start(){
+
+    private void Start()
+    {
         manager = gameManager.GetInstance();
         Inputs.instance.interactionEvent.AddListener(interact);
     }
-    
 
-    private void OnTriggerEnter2D(Collider2D collision){
-        if(collision.tag == "Player"){
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
             isReach = true;
         }
     }
-    
+
     public abstract void interact();
-    private void OnTriggerExit2D(Collider2D collision){
-        if(collision.tag == "Player"){
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
             isReach = false;
             open = false;
         }

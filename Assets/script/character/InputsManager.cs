@@ -8,14 +8,16 @@ using UnityEngine.Events;
 public class Inputs : MonoBehaviour
 {
 
-    public static Inputs instance {private set; get;}
+    public static Inputs instance { private set; get; }
 
     private PlayerInput inputs;
     public UnityEvent interactionEvent;
 
     private InputAction moveAction;
-    private void Awake(){
-        if(instance!= null){
+    private void Awake()
+    {
+        if (instance != null)
+        {
             Destroy(this);
         }
         instance = this;
@@ -25,11 +27,13 @@ public class Inputs : MonoBehaviour
         moveAction = inputs.actions.FindAction("Move");
     }
 
-    public Vector2 GetMovingInputs(){
+    public Vector2 GetMovingInputs()
+    {
         return moveAction.ReadValue<Vector2>();
     }
 
-    public void OnInteract(){
+    public void OnInteract()
+    {
         interactionEvent.Invoke();
     }
 }

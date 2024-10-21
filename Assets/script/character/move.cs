@@ -40,7 +40,8 @@ public class move : MonoBehaviour
 
     }
 
-    private Vector2 ChooseDirection(Vector2 _value){
+    private Vector2 ChooseDirection(Vector2 _value)
+    {
 
         if (!canMove)  // Si canMove est false, empêcher le mouvement
         {
@@ -48,7 +49,7 @@ public class move : MonoBehaviour
             anim.SetInteger("direction", 0);  // Réinitialiser l'animation si nécessaire
             return Vector2.zero;
         }
-        
+
         Vector2 _result = Vector2.zero;
 
         if (Mathf.Abs(_value.x) >= Mathf.Abs(_value.y))

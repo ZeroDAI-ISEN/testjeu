@@ -10,23 +10,27 @@ public class npc : interactableObject
     private UIDialogue uiDialogue;
 
     public GameObject player;  // Référence au joueur
-    private move playerMove; 
+    private move playerMove;
 
-    private void Awake(){
+    private void Awake()
+    {
         uiDialogue = FindObjectOfType<UIDialogue>();
         playerMove = player.GetComponent<move>();
     }
-    public override void interact(){
+    public override void interact()
+    {
         Debug.Log(isReach);
-        if(isReach && open == false){
-            uiDialogue.SetDialogue(dialogue,title);
-            playerMove.canMove = false; 
+        if (isReach && open == false)
+        {
+            uiDialogue.SetDialogue(dialogue, title);
+            playerMove.canMove = false;
             open = true;
         }
-        else if(open){
+        else if (open)
+        {
             open = false;
             uiDialogue.CloseDialogue();
-            playerMove.canMove = true; 
+            playerMove.canMove = true;
         }
     }
 }

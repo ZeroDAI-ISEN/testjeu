@@ -11,17 +11,20 @@ public class UIDialogue : MonoBehaviour
 
     private Canvas canvas;
 
-    private void Awake(){
+    private void Awake()
+    {
         canvas = GetComponent<Canvas>();
         CloseDialogue();
     }
 
-    public void SetDialogue(string _content,string _title){
+    public void SetDialogue(string _content, string _title)
+    {
         canvas.enabled = true;
         contentText.text = _content;
         titleText.text = _title;
     }
-    public void CloseDialogue(){
+    public void CloseDialogue()
+    {
         canvas.enabled = false;
     }
 }

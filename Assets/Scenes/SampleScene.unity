@@ -10936,6 +10936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 1830164281}
   speed: 5
+  canMove: 1
 --- !u!212 &677566200
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11140,6 +11141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: Je suis tout nu
   title: 'le mec nu :'
+  player: {fileID: 677566197}
 --- !u!61 &684235521
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13041,6 +13043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: mon cul
   title: le bout de bois
+  player: {fileID: 677566197}
 --- !u!61 &1369744952
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13455,6 +13458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: j'ai le zizi tout dur
   title: 'La poutre :'
+  player: {fileID: 677566197}
 --- !u!61 &1483231377
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17224,6 +17228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: Je suis tout nu
   title: 'le mec nu :'
+  player: {fileID: 677566197}
 --- !u!61 &1991224021
 BoxCollider2D:
   m_ObjectHideFlags: 0

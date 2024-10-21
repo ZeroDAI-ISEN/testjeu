@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-/*
+using UnityEngine.Events;
+
+[RequireComponent(typeof(PlayerInput))]
 public class Inputs : MonoBehaviour
 {
 
-    public static InputsManager instance{private set; get;}
+    public static Inputs instance {private set; get;}
 
     private PlayerInput inputs;
+    public UnityEvent interactionEvent;
 
     private InputAction moveAction;
     private void Awake(){
@@ -17,7 +20,7 @@ public class Inputs : MonoBehaviour
         }
         instance = this;
 
-        inputs = GetComponent<PlayerInpu>();
+        inputs = GetComponent<PlayerInput>();
 
         moveAction = inputs.actions.FindAction("Move");
     }
@@ -25,5 +28,9 @@ public class Inputs : MonoBehaviour
     public Vector2 GetMovingInputs(){
         return moveAction.ReadValue<Vector2>();
     }
+
+    public void OnInteract(){
+        interactionEvent.Invoke();
+    }
 }
-*/
+

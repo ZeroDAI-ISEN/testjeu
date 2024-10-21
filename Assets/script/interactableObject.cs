@@ -5,21 +5,23 @@ using UnityEngine.InputSystem;
 
 
 
-/*
+
 [RequireComponent(typeof(Collider2D))]
 
 public abstract class interactableObject : MonoBehaviour
 {
-    protected bool isReach = 0;
+    protected bool isReach = false;
 
     protected bool open = false;
 
     protected gameManager manager;
 
-    private void start(){
+    
+    private void Start(){
         manager = gameManager.GetInstance();
-        InputsManager.instance.interactionEvent.AddListener(interact);
+        Inputs.instance.interactionEvent.AddListener(interact);
     }
+    
 
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.tag == "Player"){
@@ -28,13 +30,10 @@ public abstract class interactableObject : MonoBehaviour
     }
     
     public abstract void interact();
-
     private void OnTriggerExit2D(Collider2D collision){
         if(collision.tag == "Player"){
             isReach = false;
             open = false;
-            interact();
         }
     }
 }
-*/

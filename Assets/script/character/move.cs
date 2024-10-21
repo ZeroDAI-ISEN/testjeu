@@ -16,6 +16,8 @@ public class move : MonoBehaviour
     private Animator anim;
     [SerializeField] private float speed = 5f;
 
+    public bool canMove = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,9 +40,15 @@ public class move : MonoBehaviour
 
     }
 
-    private Vector2 ChooseDirection(Vector2 _value)
-    {
+    private Vector2 ChooseDirection(Vector2 _value){
 
+        if (!canMove)  // Si canMove est false, empêcher le mouvement
+        {
+            velocity = Vector2.zero;
+            anim.SetInteger("direction", 0);  // Réinitialiser l'animation si nécessaire
+            return Vector2.zero;
+        }
+        
         Vector2 _result = Vector2.zero;
 
         if (Mathf.Abs(_value.x) >= Mathf.Abs(_value.y))

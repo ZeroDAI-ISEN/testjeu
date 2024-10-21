@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class SceneChanger : MonoBehaviour
 {
-    public string sceneToLoad;        // Nom de la scène à charger
-    public string spawnPointID;       // Identifiant du prochain point de spawn dans la scène à charger
+    [SerializeField] GameObject spriteSpawn;      
+
+    public GameObject player;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Vector3 position = spriteSpawn.transform.position;
         if (other.CompareTag("Player"))
         {
-            // Sauvegarder l'identifiant du point de spawn avant de charger la scène suivante
-            gameManager.instance.nextSpawnPointID = spawnPointID;
-
-            Debug.Log(spawnPointID);
-
-            // Charger la scène spécifiée
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+            player.transform.position = new Vector3(position.x, position.y, 0);
         }
     }
 }

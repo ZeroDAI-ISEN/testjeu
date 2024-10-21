@@ -11,7 +11,7 @@ namespace TMPro.Examples
     {
         // Since this script is used for debugging, we exclude it from builds.
         // TODO: Rework this script to make it into an editor utility.
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         public bool ShowCharacters;
         public bool ShowWords;
         public bool ShowLinks;
@@ -646,7 +646,7 @@ namespace TMPro.Examples
             UnityEditor.Handles.DrawDottedLine(tr, br, dotSpacing);
             UnityEditor.Handles.DrawDottedLine(br, bl, dotSpacing);
         }
-#endif
+        #endif
     }
 }
 

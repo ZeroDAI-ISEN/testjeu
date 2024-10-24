@@ -2,35 +2,42 @@ using UnityEngine;
 
 public class SwordHitbox : MonoBehaviour
 {
-    public Transform swordHitbox; // Référence à la hitbox (le triangle)
-    public float distanceFromPlayer = 1.0f; // Distance de la hitbox par rapport au personnage
+    private bool isObjectInHitbox = false; // Indique si un objet est dans la hitbox
+    private GameObject objectInHitbox; // Référence à l'objet dans la hitbox
+    public string targetTag = "Enemy"; // Tag de l'objet à détecter
 
-    void Update()
+    // Méthode publique appelée par AttackClass au moment de l'attaque
+    public void CheckHit()
     {
-        // Obtenir la direction de regard
-        Vector3 direction = GetLookDirection();
-
-        // Ajuster la rotation de la hitbox en tenant compte de l'inversion (180 degrés)
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f + 180f; // Inversion du triangle
-        swordHitbox.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-
-        // Placer la hitbox à une certaine distance devant le personnage
-        swordHitbox.position = transform.position + direction.normalized * distanceFromPlayer;
+        if (isObjectInHitbox && objectInHitbox.CompareTag(targetTag)) // Vérifie le tag de l'objet
+        {
+            Debug.Log("Attaque réussie sur l'ennemi : " + objectInHitbox.name);
+        }
+        else
+        {
+            Debug.Log("Attaque manquée, aucun ennemi dans la hitbox");
+        }
     }
 
-    // Fonction pour obtenir la direction du regard
-    Vector3 GetLookDirection()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // Si tu utilises les touches fléchées ou un joystick pour le mouvement
-        Vector3 lookDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        Debug.Log("Objet entré dans la hitbox : " + other.gameObject.name);
 
-        // Si le personnage ne bouge pas, garder la direction par défaut (vers le bas)
-        if (lookDirection != Vector3.zero)
+        if (other.CompareTag(targetTag))
         {
-            return lookDirection;
+            isObjectInHitbox = true; // L'objet est dans la hitbox
+            objectInHitbox = other.gameObject;
+            Debug.Log(objectInHitbox.name + " (Enemy) est dans la hitbox");
         }
+    }
 
-        // Retourner la direction par défaut (vers le bas)
-        return -transform.up;
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject == objectInHitbox)
+        {
+            isObjectInHitbox = false; // L'objet a quitté la hitbox
+            objectInHitbox = null;
+            Debug.Log("Objet a quitté la hitbox");
+        }
     }
 }

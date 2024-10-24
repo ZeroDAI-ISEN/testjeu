@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class AttackClass : MonoBehaviour
 {
-    public int valeur;
+    private SwordHitbox swordHitbox; // Référence à SwordHitbox
 
-    // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Valeur initiale : " + valeur);
+        // Trouver le composant SwordHitbox sur le GameObject du triangle
+        swordHitbox = GetComponentInChildren<SwordHitbox>(); // Utiliser GetComponentInChildren pour le trouver
+        if (swordHitbox == null)
+        {
+            Debug.LogError("SwordHitbox n'a pas été trouvé dans les enfants !");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.J))
@@ -19,9 +22,9 @@ public class AttackClass : MonoBehaviour
         }
     }
 
-    // Function that logs an attack message
     void Attack()
     {
         Debug.Log("Attaque déclenchée !");
+        swordHitbox.CheckHit(); // Appel de CheckHit() au moment de l'attaque
     }
 }
